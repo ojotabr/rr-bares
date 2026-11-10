@@ -407,6 +407,12 @@ input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;bac
   .f-grid>div:first-child{grid-column:1/-1}
   .nav .btn{display:none}
 }
+@media (max-width:900px){
+  /* faixa livre para o fio no celular */
+  .wrap,.pillars-track{padding-left:48px}
+  .eyebrow .node{margin-left:-37px;margin-right:calc(37px - 1.6rem)}
+  .eyebrow{margin-left:0}
+}
 @media (max-width:420px){
   .hero-foot .tags{gap:.9rem}
   .tile label{min-height:112px}
@@ -1131,7 +1137,7 @@ function buildThread(){
   thr.setAttribute('height',mainEl.scrollHeight);thr.style.height=mainEl.scrollHeight+'px';
   thr.setAttribute('viewBox',`0 0 ${mr.width} ${mainEl.scrollHeight}`);
   const mobile=innerWidth<900;
-  nodes=$$('[data-node]').filter(n=>n.offsetParent!==null||n.closest('.cred')).map(n=>{const r=n.getBoundingClientRect();return{el:n,x:mobile?Math.min(r.left+r.width/2,26):r.left+r.width/2-mr.left,y:r.top+r.height/2+scrollY-top}}).sort((a,b)=>a.y-b.y);
+  nodes=$$('[data-node]').filter(n=>n.offsetParent!==null||n.closest('.cred')).map(n=>{const r=n.getBoundingClientRect();return{el:n,x:mobile?18:r.left+r.width/2-mr.left,y:r.top+r.height/2+scrollY-top}}).sort((a,b)=>a.y-b.y);
   if(nodes.length<2)return;
   let d=`M${nodes[0].x},${nodes[0].y}`;
   for(let i=1;i<nodes.length;i++){const a=nodes[i-1],b=nodes[i],dy=b.y-a.y;d+=` C${a.x},${a.y+dy*.55} ${b.x},${b.y-dy*.55} ${b.x},${b.y}`}
